@@ -16,14 +16,22 @@
   <p>In the subtraction game, there is a <i>heap</i> composed of one or more <i>objects,</i> and two players take turns removing up to <i>k</i> objects from the heap. The player that takes the last object wins.</p>
 </div>
 
-<div id="input">
-  Initial heap size (integer from 1 to 100): <input type="text" id="heapSize" value="21" autocomplete="off"><br><br>
-  <i>k</i> (integer from 1 to 10): <input type="text" id="k" value="3" autocomplete="off"><br><br>
-  <button onclick="validate()">Start</button>
+<div id="paramInput">
+  <p>Initial heap size (at least 1): <input type="number" id="initialHeap" value="21" autocomplete="off"></p>
+
+  <p><i>k</i> (at least 1; at most initial heap size): <input type="number" id="k" value="3" autocomplete="off"></p>
+
+  <button onclick="startGame()">Start</button>
 </div>
 
 <div id="game">
-  Error 404: I didn't code this part yet
+  <button onclick="stopGame()">Stop game</button>
+
+  <p>It's <span id="currentPlayer">PLACEHOLDER</span> turn. There are <span id="currentHeap">PLACEHOLDER</span> objects in the heap.</p>
+
+  <p>Remove how many? (at least 1; at most <span id="maxPerMove">PLACEHOLDER</span>): <input type="number" id="move" autocomplete="off"></p>
+
+  <button onclick="updateHeap()">Remove</button>
 </div>
 
 <script src="script.js"></script>
