@@ -21,6 +21,16 @@
 
   <p><i>k</i> (at least 1; at most initial heap size): <input type="number" id="k" value="3" autocomplete="off"></p>
 
+  <p>Turn order: <select id="turnOrder" autocomplete="off">
+    <optgroup label="One human player">
+      <option value="humanFirst" selected="selected">You go first</option>
+      <option value="cpuFirst">Computer goes first</option>
+    </optgroup>
+    <optgroup label="Two human players">
+      <option value="twoHumans">Offline multiplayer</option>
+    </optgroup>
+  </select></p>
+
   <button onclick="startGame()">Start</button>
 </div>
 
@@ -31,7 +41,7 @@
 
   <p>Remove how many? (at least 1; at most <span id="maxPerMove">PLACEHOLDER</span>): <input type="number" id="move" autocomplete="off"></p>
 
-  <button onclick="updateHeap()">Remove</button>
+  <button onclick="playerMove()">Remove</button>
 </div>
 
 <script src="script.js"></script>
