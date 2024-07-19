@@ -3,19 +3,23 @@
 function startGame() {
     var initialHeap = +document.getElementById("initialHeap").value;
     var k = +document.getElementById("k").value;
+    var dialog = document.getElementById("dialog");
+    var dialogText = document.getElementById("dialogText");
 
     if (!Number.isInteger(initialHeap) || initialHeap < 1) {
-        alert("Invalid initial heap size");
+        dialogText.innerHTML = "Invalid initial heap size";
+        dialog.showModal();
         return;
     } else if (!Number.isInteger(k) || k < 1 || k > initialHeap) {
-        alert("Invalid k");
+        dialogText.innerHTML = "Invalid k";
+        dialog.showModal();
         return;
     }
 
     document.getElementById("paramInput").style.display = "none";
     document.getElementById("game").style.display = "block";
     
-    document.getElementById("currentHeap").innerHTML = initialHeap;
+    updateHeap(initialHeap);
     document.getElementById("maxPerMove").innerHTML = k;
 
     var turnOrder = document.getElementById("turnOrder").value;
@@ -31,40 +35,37 @@ function startGame() {
     }
 }
 
-function stopGame() {
-    document.getElementById("move").value = "";
-
-    document.getElementById("game").style.display = "none";
-    document.getElementById("paramInput").style.display = "block";
-}
-
 function playerMove() {
     var currentPlayer = document.getElementById("currentPlayer");
-    var currentHeap = +document.getElementById("currentHeap").innerHTML;
+    var currentHeap = +document.getElementById("currentHeap").innerHTML.replace(/\D/g, '');
     var maxPerMove = +document.getElementById("maxPerMove").innerHTML;
     var move = +document.getElementById("move").value;
+    var dialog = document.getElementById("dialog");
+    var dialogText = document.getElementById("dialogText");
 
     document.getElementById("move").value = "";
 
     if (!Number.isInteger(move) || move < 1 || move > maxPerMove) {
-        alert("Invalid move");
+        dialogText.innerHTML = "Invalid move";
+        dialog.showModal();
         return;
     }
 
     currentHeap -= move;
     if (currentHeap == 0) {
         if (currentPlayer.innerHTML == "Player 1's") {
-            alert("Player 1 wins!");
+            dialogText.innerHTML = "Player 1 wins!";
         } else if (currentPlayer.innerHTML == "Player 2's") {
-            alert("Player 2 wins!");
+            dialogText.innerHTML = "Player 2 wins!";
         } else {
-            alert("You win! Well played.");
+            dialogText.innerHTML = "You win! Well played.";
         }
+        dialog.showModal();
         stopGame();
         return;
     }
 
-    document.getElementById("currentHeap").innerHTML = currentHeap;
+    updateHeap(currentHeap);
 
     if (currentHeap < maxPerMove) {
         maxPerMove = currentHeap;
@@ -97,15 +98,35 @@ function computerMove(currentHeap, maxPerMove) {
     }
 
     if (currentHeap == 0) {
-        alert("The computer wins! Better luck next time.");
+        dialogText.innerHTML = "The computer wins! Better luck next time.";
+        dialog.showModal();
         stopGame();
         return;
     }
 
-    document.getElementById("currentHeap").innerHTML = currentHeap;
+    updateHeap(currentHeap);
 
     if (currentHeap < maxPerMove) {
         maxPerMove = currentHeap;
         document.getElementById("maxPerMove").innerHTML = maxPerMove;
     }
+}
+
+function closeDialog() {
+    dialog.close();
+}
+
+function updateHeap(newSize) {
+    if (newSize == 1) {
+        document.getElementById("currentHeap").innerHTML = `is 1 object`;
+    } else {
+        document.getElementById("currentHeap").innerHTML = `are ${newSize} objects`;
+    }
+}
+
+function stopGame() {
+    document.getElementById("move").value = "";
+
+    document.getElementById("game").style.display = "none";
+    document.getElementById("paramInput").style.display = "block";
 }

@@ -11,7 +11,7 @@
 <div class="header">
   <h1>The Subtraction Game</h1>
 
-  <p><a href="https://en.wikipedia.org/wiki/Nim#The_subtraction_game">https://en.wikipedia.org/wiki/Nim#The_subtraction_game</a></p>
+  <p><a href="https://en.wikipedia.org/wiki/Nim#The_subtraction_game">Wikipedia article about this game</a></p>
 
   <p>In the subtraction game, there is a <i>heap</i> composed of one or more <i>objects,</i> and two players take turns removing up to <i>k</i> objects from the heap. The player that takes the last object wins.</p>
 </div>
@@ -37,12 +37,14 @@
 <div id="game">
   <button onclick="stopGame()">Stop game</button>
 
-  <p>It's <span id="currentPlayer">PLACEHOLDER</span> turn. There are <span id="currentHeap">PLACEHOLDER</span> objects in the heap.</p>
+  <p>It's <span id="currentPlayer">PLACEHOLDER</span> turn. There <span id="currentHeap">PLACEHOLDER</span> in the heap.</p>
 
   <p>Remove how many? (at least 1; at most <span id="maxPerMove">PLACEHOLDER</span>): <input type="number" id="move" autocomplete="off"></p>
 
   <button onclick="playerMove()">Remove</button>
 </div>
+
+<dialog id="dialog"><span id="dialogText">PLACEHOLDER</span><br><br><button onclick="closeDialog()">OK</button></dialog>
 
 <script src="script.js"></script>
 </body>
