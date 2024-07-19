@@ -82,12 +82,15 @@ function playerMove() {
 }
 
 function computerMove(currentHeap, maxPerMove) {
+    var dialog = document.getElementById("dialog");
+    var dialogText = document.getElementById("dialogText");
+
     if (currentHeap % (maxPerMove + 1) == 0) {
         /* This is a losing position, so we make a random legal move and hope the player makes a mistake. */
-        move = Math.floor(Math.random() * maxPerMove) + 1;
+        var move = Math.floor(Math.random() * maxPerMove) + 1;
     } else {
         /* This is a winning position, so we put the player in a losing position. */
-        move = currentHeap % (maxPerMove + 1);
+        var move = currentHeap % (maxPerMove + 1);
     }
 
     currentHeap -= move;
