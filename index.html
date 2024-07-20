@@ -39,9 +39,17 @@
 
   <p>It's <span id="currentPlayer">PLACEHOLDER</span> turn. There <span id="currentHeap">PLACEHOLDER</span> in the heap.</p>
 
-  <p>Remove how many? (at least 1; at most <span id="maxPerMove">PLACEHOLDER</span>): <input type="number" id="move" autocomplete="off"></p>
+  <div id="playerInput">
+    <p>Remove how many? (at least 1; at most <span id="maxPerMove">PLACEHOLDER</span>): <input type="number" id="playerMove" autocomplete="off"></p>
 
-  <button onclick="playerMove()">Remove</button>
+    <button onclick="playerTurn()">Remove</button>
+  </div>
+
+  <div id="computerOutput">
+    <p>The computer removes <span id="computerMove">PLACEHOLDER</span> from the heap.</p>
+
+    <button onclick="computerTurn2()">Continue</button>
+  </div>
 </div>
 
 <dialog id="dialog"><span id="dialogText">PLACEHOLDER</span><br><br><button onclick="closeDialog()">OK</button></dialog>
