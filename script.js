@@ -1,10 +1,12 @@
 "use strict";
 
 function startGame() {
-    var initialHeap = +document.getElementById("initialHeap").value;
-    var k = +document.getElementById("k").value;
-    var dialog = document.getElementById("dialog");
-    var dialogText = document.getElementById("dialogText");
+    const initialHeap = +document.getElementById("initialHeap").value;
+    const k = +document.getElementById("k").value;
+    const turnOrder = document.getElementById("turnOrder").value;
+    const currentPlayer = document.getElementById("currentPlayer")
+    const dialog = document.getElementById("dialog");
+    const dialogText = document.getElementById("dialogText");
 
     if (!Number.isInteger(initialHeap) || initialHeap < 1) {
         dialogText.innerHTML = "Invalid initial heap size";
@@ -21,8 +23,6 @@ function startGame() {
     updateHeap(initialHeap);
     document.getElementById("maxPerMove").innerHTML = k;
 
-    var turnOrder = document.getElementById("turnOrder").value;
-    var currentPlayer = document.getElementById("currentPlayer")
 
     if (turnOrder == "twoHumans") {
         currentPlayer.innerHTML = "Player 1's";
@@ -36,12 +36,12 @@ function startGame() {
 }
 
 function playerTurn() {
-    var currentPlayer = document.getElementById("currentPlayer");
-    var currentHeap = +document.getElementById("currentHeap").innerHTML.replace(/\D/g, '');
-    var maxPerMove = +document.getElementById("maxPerMove").innerHTML;
-    var playerMove = +document.getElementById("playerMove").value;
-    var dialog = document.getElementById("dialog");
-    var dialogText = document.getElementById("dialogText");
+    const currentPlayer = document.getElementById("currentPlayer");
+    let currentHeap = +document.getElementById("currentHeap").innerHTML.replace(/\D/g, '');
+    let maxPerMove = +document.getElementById("maxPerMove").innerHTML;
+    const playerMove = +document.getElementById("playerMove").value;
+    const dialog = document.getElementById("dialog");
+    const dialogText = document.getElementById("dialogText");
 
     document.getElementById("playerMove").value = "";
 
@@ -81,19 +81,21 @@ function playerTurn() {
     }
 }
 
+/* This function is in two parts so the player can see what the computer did before continuing. */
 function computerTurn1(currentHeap, maxPerMove) {
-    var currentPlayer = document.getElementById("currentPlayer");
-    var computerMove = document.getElementById("computerMove");
+    const currentPlayer = document.getElementById("currentPlayer");
+    const computerMove = document.getElementById("computerMove");
+    let bestMove;
 
     currentPlayer.innerHTML = "the computer's";
     showAndHide("computerOutput", "playerInput");
 
     if (currentHeap % (maxPerMove + 1) == 0) {
         /* This is a losing position, so we make a random legal move and hope the player makes a mistake. */
-        var bestMove = Math.floor(Math.random() * maxPerMove) + 1;
+        bestMove = Math.floor(Math.random() * maxPerMove) + 1;
     } else {
         /* This is a winning position, so we put the player in a losing position. */
-        var bestMove = currentHeap % (maxPerMove + 1);
+        bestMove = currentHeap % (maxPerMove + 1);
     }
 
     if (bestMove == 1) {
@@ -104,12 +106,12 @@ function computerTurn1(currentHeap, maxPerMove) {
 }
 
 function computerTurn2() {
-    var currentPlayer = document.getElementById("currentPlayer");
-    var currentHeap = +document.getElementById("currentHeap").innerHTML.replace(/\D/g, '');
-    var maxPerMove = +document.getElementById("maxPerMove").innerHTML;
-    var computerMove = +document.getElementById("computerMove").innerHTML.replace(/\D/g, '');
-    var dialog = document.getElementById("dialog");
-    var dialogText = document.getElementById("dialogText");
+    const currentPlayer = document.getElementById("currentPlayer");
+    let currentHeap = +document.getElementById("currentHeap").innerHTML.replace(/\D/g, '');
+    let maxPerMove = +document.getElementById("maxPerMove").innerHTML;
+    const computerMove = +document.getElementById("computerMove").innerHTML.replace(/\D/g, '');
+    const dialog = document.getElementById("dialog");
+    const dialogText = document.getElementById("dialogText");
 
     currentHeap -= computerMove;
 
